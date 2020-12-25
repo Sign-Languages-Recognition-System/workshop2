@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="newPrefix">
+    <file>mysaline-asl.jpg</file>
+  </qresource>
+  <qresource prefix="newPrefix3">
+    <file>cooltext372373214987174.png</file>
+  </qresource>
+</RCC>
