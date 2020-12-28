@@ -206,13 +206,40 @@ class UI(QMainWindow):
 
         def clickedReport(self):
             print("Report")
-            '''uic.loadUi("StudentReport.ui",self)
+            uic.loadUi("StudentReport.ui",self)
             self.buttonBack=self.findChild(QPushButton,"back")
             self.buttonBack.clicked.connect(self.clickedBtn2)
             self.buttonLoad=self.findChild(QPushButton,"Load")
-            self.buttonLoad.clicked.connect(self.clickedLoad)'''
-            response = pymsgbox.prompt('Which class report do you wish to see?')
-            os.system("start EXCEL.EXE Student{}.xlsx".format(response))
+            self.buttonLoad.clicked.connect(self.clickedLoad)
+            self.buttonSave=self.findChild(QPushButton,"Save")
+            self.buttonLoad.clicked.connect(self.clickedSave)
+             
+        def clickedLoad(self):
+                path = "Student.xlsx"
+                wb_student = openpyxl.load_workbook(path)
+                sheet_student = wb_student.active
+
+                row = 0
+                self.tableWidget.setRowCount(len(sheet_student))
+                for wb_student in wb_student:
+                    self.tableWidget.setItem(row, 0, QtWidgets.QTableWidgetItem(str(sheet_student["ID"])))
+                    self.tableWidget.setItem(row, 1, QtWidgets.QTableWidgetItem(sheet_student["NAME"]))
+                    self.tableWidget.setItem(row, 2, QtWidgets.QTableWidgetItem(str(sheet_student["PASSWORD"])))
+                    self.tableWidget.setItem(row, 3, QtWidgets.QTableWidgetItem(str(sheet_student["AGE"])))
+                    self.tableWidget.setItem(row, 4, QtWidgets.QTableWidgetItem(str(sheet_student["IC NO"])))
+                    self.tableWidget.setItem(row, 5, QtWidgets.QTableWidgetItem(str(sheet_student["SCORE(NUMBER)"])))
+                    self.tableWidget.setItem(row, 6, QtWidgets.QTableWidgetItem(str(sheet_student["SCORE(ALPHABET)"])))
+                    row = row + 1
+
+        def clickedSave(self):
+                path2 = "Student2.xlsx"
+                wb_student2 = openpyxl.load_workbook(path2)
+                sheet_stuSave = wb_student2.active
+                for currentColumn in range(self.tableWidget.columnCount()):
+                    for currentRow in range(self.tableWidget.rowCount()):
+                        teext = str(self.tableWidget.item(currentRow, currentColumn).text())
+                        sheet_stuSave.write(currentRow, currentColumn, teext)
+                wb_student2.save(path2)
 
         def clickedTestAlpha(self):
                 tpe='a'
