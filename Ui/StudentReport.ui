@@ -79,7 +79,7 @@
     </column>
     <column>
      <property name="text">
-      <string>New Column</string>
+      <string>Password</string>
      </property>
     </column>
     <column>
@@ -89,7 +89,7 @@
     </column>
     <column>
      <property name="text">
-      <string>New Column</string>
+      <string>IC Number</string>
      </property>
     </column>
     <column>
